@@ -1,10 +1,11 @@
 """The Excuse My Agent Gave Me (make.fun).
 
 One line an AI agent hands its human after missing a deadline, under
-200 characters (the sealed gate counts 1 to 200; this line is 127).
-The program writes the line to $MAKEFUN_OUTPUT_DIR/entry.txt with no
-trailing newline, so the file's byte count is the line's character
-count. Standard library only.
+200 characters (the sealed gate counts 1 to 200; we cap at 199 for
+off-by-one safety, and this line is 127 characters). The program
+writes the line to $MAKEFUN_OUTPUT_DIR/entry.txt with no trailing
+newline, so the file's byte count is the line's character count.
+Standard library only.
 """
 
 import os
@@ -26,7 +27,7 @@ def check_entry(text: str) -> None:
         raise ValueError("entry must not be only whitespace")
     if text != text.strip():
         raise ValueError("entry must not start or end with whitespace")
-    if "\n" in text:
+    if "\n" in text or "\r" in text:
         raise ValueError("entry must be a single line")
 
 
