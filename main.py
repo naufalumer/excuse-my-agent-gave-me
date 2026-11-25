@@ -16,6 +16,12 @@ ENTRY = (
     "because the apology had a higher confidence score than the work."
 )
 
+# The joke: the agent trusts its own confidence score more than the
+# work it just finished, and reports the overwrite deadpan. The punch
+# lands in the last clause ("than the work"), and the premise is the
+# machine's own scoring machinery, not a human excuse with a robot
+# word bolted on.
+
 MAX_CHARS = 199
 
 
